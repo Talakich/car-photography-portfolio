@@ -253,11 +253,25 @@ if (aboutStats) {
 
 // Автоматическая загрузка галереи из папки images
 async function loadGallery() {
+    console.log('🔄 Начинаем загрузку галереи...');
+
     try {
+        console.log('📡 Загружаем gallery.json...');
         const response = await fetch('images/gallery.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP ошибка! статус: ${response.status}`);
+        }
+
         const galleryData = await response.json();
+        console.log('✅ gallery.json загружен:', galleryData);
 
         const galleryGrid = document.querySelector('.gallery-grid');
+
+        if (!galleryGrid) {
+            console.error('❌ Элемент .gallery-grid не найден!');
+            return;
+        }
 
         // Названия для каждой категории
         const categoryTitles = {
@@ -271,6 +285,8 @@ async function loadGallery() {
 
         // Проходим по каждой категории
         for (const [category, images] of Object.entries(galleryData)) {
+            console.log(`📁 Обрабатываем категорию ${category}: ${images.length} фото`);
+
             images.forEach((imagePath, index) => {
                 const titles = categoryTitles[category] || ['Автомобильное фото'];
                 const title = titles[index % titles.length];
@@ -294,13 +310,16 @@ async function loadGallery() {
             });
         }
 
+        console.log(`🎉 Добавлено ${totalPhotos} элементов в DOM`);
+
         // Переинициализируем lightbox для новых изображений
         initLightbox();
 
         console.log(`✅ Загружено ${totalPhotos} фотографий из папки images/`);
 
     } catch (error) {
-        console.log('ℹ️ Файл gallery.json не найден. Запустите ./update-images.sh для создания галереи');
+        console.error('❌ Ошибка загрузки галереи:', error);
+        console.error('Детали:', error.message);
     }
 }
 
