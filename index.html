@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомобильная Фотография - Портфолио</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">AUTO PHOTO</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Главная</a></li>
+                <li><a href="#gallery" class="nav-link">Галерея</a></li>
+                <li><a href="#about" class="nav-link">Обо мне</a></li>
+                <li><a href="#contact" class="nav-link">Контакты</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главная секция -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Автомобильная Фотография</h1>
+            <p class="hero-subtitle">Профессиональная съемка автомобилей</p>
+            <a href="#gallery" class="btn-primary">Смотреть работы</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Прокрутите вниз</span>
+            <div class="arrow-down"></div>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Мои Работы</h2>
+            <p class="section-subtitle">Подборка лучших автомобильных фотографий</p>
+
+            <!-- Фильтры -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="sports">Спорткары</button>
+                <button class="filter-btn" data-filter="classic">Классика</button>
+                <button class="filter-btn" data-filter="luxury">Премиум</button>
+                <button class="filter-btn" data-filter="action">В движении</button>
+            </div>
+
+            <!-- Галерея изображений -->
+            <div class="gallery-grid">
+                <!-- Пример карточек (замените на свои фото) -->
+                <div class="gallery-item" data-category="sports">
+                    <div class="gallery-image">
+                        <img src="images/_DSC2888.jpg" alt="Автомобильная фотография">
+                        <div class="gallery-overlay">
+                            <h3>Автомобильная съемка</h3>
+                            <p>Профессиональная фотография</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="classic">
+                    <div class="gallery-image">
+                        <img src="images/_DSC5862.jpg" alt="Автомобильная фотография">
+                        <div class="gallery-overlay">
+                            <h3>Студийная съемка</h3>
+                            <p>Детальная проработка</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="luxury">
+                    <div class="gallery-image">
+                        <img src="images/_DSC5817.jpg" alt="Премиум автомобиль">
+                        <div class="gallery-overlay">
+                            <h3>Премиум класс</h3>
+                            <p>Экстерьер</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="action">
+                    <div class="gallery-image">
+                        <img src="images/_DSC5823.jpg" alt="Автомобиль в движении">
+                        <div class="gallery-overlay">
+                            <h3>Динамичная съемка</h3>
+                            <p>Захват момента</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="sports">
+                    <div class="gallery-image">
+                        <img src="images/IMG_3392.jpg" alt="Спорткар">
+                        <div class="gallery-overlay">
+                            <h3>Спортивный автомобиль</h3>
+                            <p>Профессиональная съемка</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="luxury">
+                    <div class="gallery-image">
+                        <img src="images/IMG_3393.jpg" alt="Автомобиль">
+                        <div class="gallery-overlay">
+                            <h3>Автомобильное фото</h3>
+                            <p>Качественная съемка</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Обо мне</h2>
+                    <p>Я профессиональный автомобильный фотограф с многолетним опытом работы. Специализируюсь на съемке спортивных, классических и премиум автомобилей.</p>
+                    <p>Моя цель - показать уникальность и красоту каждого автомобиля через объектив камеры. Работаю как в студии, так и на локации.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>500+</h3>
+                            <p>Фотосессий</p>
+                        </div>
+                        <div class="stat">
+                            <h3>100+</h3>
+                            <p>Довольных клиентов</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Лет опыта</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/IMG_3393.jpg" alt="Фотограф">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Связаться со мной</h2>
+            <p class="section-subtitle">Готов обсудить ваш проект</p>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h3>Email</h3>
+                        <p>your.email@example.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Телефон</h3>
+                        <p>+7 (xxx) xxx-xx-xx</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Социальные сети</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">Instagram</a>
+                            <a href="#" class="social-link">VK</a>
+                            <a href="#" class="social-link">Telegram</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Телефон">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Сообщение" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Автомобильная Фотография. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для просмотра фото -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-caption"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
