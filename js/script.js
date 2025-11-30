@@ -255,52 +255,49 @@ if (aboutStats) {
 async function loadGallery() {
     try {
         const response = await fetch('images/gallery.json');
-        const images = await response.json();
+        const galleryData = await response.json();
 
         const galleryGrid = document.querySelector('.gallery-grid');
 
-        // Очищаем существующие элементы (кроме примеров)
-        // galleryGrid.innerHTML = '';
+        // Названия для каждой категории
+        const categoryTitles = {
+            'sports': ['Спортивный автомобиль', 'Мощь и скорость', 'Гоночный болид', 'Суперкар'],
+            'classic': ['Классический стиль', 'Ретро автомобиль', 'Винтажная классика', 'Легенда дорог'],
+            'luxury': ['Премиум класс', 'Роскошный автомобиль', 'Элитное авто', 'Статус и стиль'],
+            'action': ['Динамичная съемка', 'Автомобиль в движении', 'Скорость и драйв', 'Экшн фото']
+        };
 
-        // Категории для случайного распределения фото
-        const categories = ['sports', 'classic', 'luxury', 'action'];
-        const titles = [
-            'Спортивный автомобиль',
-            'Классический стиль',
-            'Премиум класс',
-            'Динамичная съемка',
-            'Студийная съемка',
-            'Автомобильное фото',
-            'Профессиональная съемка',
-            'Детальная проработка'
-        ];
+        let totalPhotos = 0;
 
-        // Добавляем каждое фото в галерею
-        images.forEach((imageName, index) => {
-            const category = categories[index % categories.length];
-            const title = titles[index % titles.length];
+        // Проходим по каждой категории
+        for (const [category, images] of Object.entries(galleryData)) {
+            images.forEach((imagePath, index) => {
+                const titles = categoryTitles[category] || ['Автомобильное фото'];
+                const title = titles[index % titles.length];
 
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-            galleryItem.setAttribute('data-category', category);
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-category', category);
 
-            galleryItem.innerHTML = `
-                <div class="gallery-image">
-                    <img src="images/${imageName}" alt="${title}">
-                    <div class="gallery-overlay">
-                        <h3>${title}</h3>
-                        <p>Автомобильная фотография</p>
+                galleryItem.innerHTML = `
+                    <div class="gallery-image">
+                        <img src="images/${imagePath}" alt="${title}">
+                        <div class="gallery-overlay">
+                            <h3>${title}</h3>
+                            <p>Автомобильная фотография</p>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
 
-            galleryGrid.appendChild(galleryItem);
-        });
+                galleryGrid.appendChild(galleryItem);
+                totalPhotos++;
+            });
+        }
 
         // Переинициализируем lightbox для новых изображений
         initLightbox();
 
-        console.log(`✅ Загружено ${images.length} фотографий из папки images/`);
+        console.log(`✅ Загружено ${totalPhotos} фотографий из папки images/`);
 
     } catch (error) {
         console.log('ℹ️ Файл gallery.json не найден. Запустите ./update-images.sh для создания галереи');

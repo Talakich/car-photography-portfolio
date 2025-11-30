@@ -1,14 +1,21 @@
-[
-  "_DSC2888.jpg"
+{
+  "sports": [
+    "sports/_DSC2888.jpg"
 ,
-  "_DSC5817.jpg"
+    "sports/IMG_3392.jpg"
+  ]
 ,
-  "_DSC5823.jpg"
+  "classic": [
+    "classic/_DSC5862.jpg"
+  ]
 ,
-  "_DSC5862.jpg"
+  "luxury": [
+    "luxury/_DSC5817.jpg"
 ,
-  "IMG_3392.jpg"
+    "luxury/IMG_3393.jpg"
+  ]
 ,
-  "IMG_3393.jpg"
-
-]
+  "action": [
+    "action/_DSC5823.jpg"
+  ]
+}
