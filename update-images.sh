@@ -1,21 +1,39 @@
 #!/bin/bash
 
 echo "=========================================="
-echo "Скрипт для обновления изображений"
+echo "Автоматическое обновление галереи"
 echo "=========================================="
 echo ""
-echo "Скопируйте ваши фотографии в папку 'images/'"
+
+# Переходим в директорию скрипта
+cd "$(dirname "$0")"
+
+# Создаем JSON файл со списком всех изображений
+echo "[" > images/gallery.json
+
+first=true
+for img in images/*.jpg images/*.jpeg images/*.png images/*.JPG images/*.JPEG images/*.PNG; do
+    if [ -f "$img" ]; then
+        filename=$(basename "$img")
+        # Пропускаем gallery.json
+        if [ "$filename" != "gallery.json" ]; then
+            if [ "$first" = true ]; then
+                first=false
+            else
+                echo "," >> images/gallery.json
+            fi
+            echo "  \"$filename\"" >> images/gallery.json
+        fi
+    fi
+done
+
+echo "" >> images/gallery.json
+echo "]" >> images/gallery.json
+
+echo "✅ Галерея обновлена!"
 echo ""
-echo "Ваши текущие файлы в папке images:"
-ls -1 images/ 2>/dev/null || echo "(папка пуста)"
+echo "Найдено фотографий:"
+cat images/gallery.json | grep -c "\.jpg\|\.jpeg\|\.png" || echo "0"
 echo ""
-echo "=========================================="
-echo "Инструкция:"
-echo "1. Скопируйте ваши фото в папку images/"
-echo "2. Откройте index.html в текстовом редакторе"
-echo "3. Найдите строки с 'placeholder-X.jpg'"
-echo "4. Замените на имена ваших файлов"
-echo ""
-echo "Пример замены:"
-echo "  images/placeholder-1.jpg → images/ваше-фото-1.jpg"
+echo "Откройте index.html в браузере, чтобы увидеть изменения"
 echo "=========================================="

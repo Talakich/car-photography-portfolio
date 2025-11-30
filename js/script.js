@@ -251,4 +251,85 @@ if (aboutStats) {
     statsObserver.observe(aboutStats);
 }
 
+// Автоматическая загрузка галереи из папки images
+async function loadGallery() {
+    try {
+        const response = await fetch('images/gallery.json');
+        const images = await response.json();
+
+        const galleryGrid = document.querySelector('.gallery-grid');
+
+        // Очищаем существующие элементы (кроме примеров)
+        // galleryGrid.innerHTML = '';
+
+        // Категории для случайного распределения фото
+        const categories = ['sports', 'classic', 'luxury', 'action'];
+        const titles = [
+            'Спортивный автомобиль',
+            'Классический стиль',
+            'Премиум класс',
+            'Динамичная съемка',
+            'Студийная съемка',
+            'Автомобильное фото',
+            'Профессиональная съемка',
+            'Детальная проработка'
+        ];
+
+        // Добавляем каждое фото в галерею
+        images.forEach((imageName, index) => {
+            const category = categories[index % categories.length];
+            const title = titles[index % titles.length];
+
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.setAttribute('data-category', category);
+
+            galleryItem.innerHTML = `
+                <div class="gallery-image">
+                    <img src="images/${imageName}" alt="${title}">
+                    <div class="gallery-overlay">
+                        <h3>${title}</h3>
+                        <p>Автомобильная фотография</p>
+                    </div>
+                </div>
+            `;
+
+            galleryGrid.appendChild(galleryItem);
+        });
+
+        // Переинициализируем lightbox для новых изображений
+        initLightbox();
+
+        console.log(`✅ Загружено ${images.length} фотографий из папки images/`);
+
+    } catch (error) {
+        console.log('ℹ️ Файл gallery.json не найден. Запустите ./update-images.sh для создания галереи');
+    }
+}
+
+// Инициализация lightbox для динамически загруженных изображений
+function initLightbox() {
+    document.querySelectorAll('.gallery-image').forEach(image => {
+        // Удаляем старые обработчики клонированием
+        const newImage = image.cloneNode(true);
+        image.parentNode.replaceChild(newImage, image);
+
+        newImage.addEventListener('click', function() {
+            lightbox.classList.add('active');
+            const img = this.querySelector('img');
+            const overlay = this.querySelector('.gallery-overlay');
+
+            lightboxImg.src = img.src;
+            if (overlay) {
+                const title = overlay.querySelector('h3').textContent;
+                const description = overlay.querySelector('p').textContent;
+                lightboxCaption.textContent = `${title} - ${description}`;
+            }
+        });
+    });
+}
+
+// Загружаем галерею при загрузке страницы
+window.addEventListener('DOMContentLoaded', loadGallery);
+
 console.log('Сайт портфолио загружен! Добавьте свои фотографии в папку images/');
